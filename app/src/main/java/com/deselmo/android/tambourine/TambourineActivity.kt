@@ -1,8 +1,8 @@
 package com.deselmo.android.tambourine
 
 import android.Manifest
-import android.content.Intent
-import android.content.IntentFilter
+import android.annotation.SuppressLint
+import android.content.*
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -13,8 +13,6 @@ import android.hardware.SensorEventListener
 import android.media.MediaPlayer
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.LocalBroadcastManager
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.graphics.PorterDuff
 import android.graphics.Rect
 import android.media.AudioManager
@@ -25,7 +23,8 @@ import android.view.*
 import kotlinx.android.synthetic.main.activity_tambourine.*
 
 
-class TambourineActivity : AppCompatActivity(), SensorEventListener {
+class TambourineActivity : AppCompatActivity(), SensorEventListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
     companion object {
         val UPDATE_UI_FILTER: String = "com.deselmo.android.TambourineActivity.UPDATE_UI_FILTER"
         val ACTION: String = "ACTION"
@@ -95,16 +94,11 @@ class TambourineActivity : AppCompatActivity(), SensorEventListener {
         LocalBroadcastManager.getInstance(this)
                 .registerReceiver(broadcastReceiver, IntentFilter(UPDATE_UI_FILTER))
 
-        val color = when(PreferenceManager.getDefaultSharedPreferences(this)
-                .getString("button_color", "theme")) {
-            "red" -> R.color.red
-            "green" -> R.color.green
-            "blue" -> R.color.blue
-            "yellow" -> R.color.yellow
-            else -> null
-        }
-        if(color != null)
-            soundButton.background.setColorFilter(ContextCompat.getColor(this, color), PorterDuff.Mode.MULTIPLY)
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(this)
+
+        onSharedPreferenceChanged(PreferenceManager.getDefaultSharedPreferences(this),
+                "button_color")
 
         soundButton.setOnTouchListener { view: View, motionEvent ->
             when(motionEvent.actionMasked) {
@@ -144,7 +138,35 @@ class TambourineActivity : AppCompatActivity(), SensorEventListener {
         LocalBroadcastManager.getInstance(this)
                 .unregisterReceiver(broadcastReceiver)
 
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this)
+
         super.onDestroy()
+    }
+
+
+    @SuppressLint("PrivateResource")
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+        println(key)
+        if(key == "button_color") {
+            val color = when(sharedPreferences.getString("button_color", "theme")) {
+                "red" -> R.color.red
+                "green" -> R.color.green
+                "blue" -> R.color.blue
+                "yellow" -> R.color.yellow
+                "theme" -> when(sharedPreferences.getString("theme", "light")) {
+                    "light" -> R.color.button_material_light
+                    "dark" -> R.color.button_material_dark
+                    else -> null
+                }
+                else -> null
+            }
+
+            if(color != null) {
+                soundButton.background.setColorFilter(ContextCompat
+                        .getColor(this, color), PorterDuff.Mode.MULTIPLY)
+            }
+        }
     }
 
 

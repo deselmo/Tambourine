@@ -10,10 +10,10 @@ import android.preference.Preference
 import android.preference.PreferenceGroup
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
-
-import kotlinx.android.synthetic.main.activity_settings.*
 import android.content.Intent
 import android.support.v4.app.TaskStackBuilder
+
+import kotlinx.android.synthetic.main.activity_settings.*
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -40,12 +40,14 @@ class SettingsActivity : AppCompatActivity() {
 
         override fun onResume() {
             super.onResume()
+
             preferenceScreen.sharedPreferences
                     .registerOnSharedPreferenceChangeListener(this)
         }
 
         override fun onPause() {
             super.onPause()
+
             preferenceScreen.sharedPreferences
                     .unregisterOnSharedPreferenceChangeListener(this)
         }
