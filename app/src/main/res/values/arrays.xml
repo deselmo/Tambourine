@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="themes_available">
+        <item>@string/light</item>
+        <item>@string/dark</item>
+    </string-array>
+
+    <string-array name="themes_available_value">
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+
+
+    <string-array name="colors_available">
+        <item>@string/theme</item>
+        <item>@string/red</item>
+        <item>@string/green</item>
+        <item>@string/blue</item>
+        <item>@string/yellow</item>
+    </string-array>
+
+    <string-array name="colors_available_value">
+        <item>theme</item>
+        <item>red</item>
+        <item>green</item>
+        <item>blue</item>
+        <item>yellow</item>
+    </string-array>
+</resources>

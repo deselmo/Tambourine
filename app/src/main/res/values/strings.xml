@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tambourine</string>
+    <string name="action_settings">Settings</string>
+    <string name="play">Play</string>
+    <string name="action_search">Search</string>
+    <string name="title_activity_play">Recorded audio</string>
+    <string name="hold_here_to_enable_sound">Hold here to enable sound</string>
+    <string name="title_tambourine_accelerometer">Tambourine</string>
+    <string name="action_play">recorded audio</string>
+    <string name="action_start_record">starts recording</string>
+    <string name="audio_length">Audio length</string>
+    <string name="stop">stop</string>
+    <string name="share">Share</string>
+    <string name="rename">Rename</string>
+    <string name="delete">Delete</string>
+    <string name="audio_removed">audio removed</string>
+    <string name="audio_removed_failed">audio removed failed</string>
+    <string name="share_audio_using">Share via</string>
+    <string name="cancel">Cancel</string>
+    <string name="file_renamed">file renamed</string>
+    <string name="audio_renaming_failed">audio renaming failed</string>
+    <string name="audio">audio</string>
+    <string name="Theme">Theme</string>
+    <string name="theme">theme</string>
+    <string name="settings">Settings</string>
+    <string name="unable_to_open_file">unable to open file</string>
+    <string name="sensitivity">Impact resistance</string>
+    <string name="button_color">Button color</string>
+    <string name="light">light</string>
+    <string name="dark">dark</string>
+    <string name="red">red</string>
+    <string name="green">green</string>
+    <string name="blue">blue</string>
+    <string name="yellow">yellow</string>
+    <string name="device">Device</string>
+    <string name="personal">Personal</string>
+</resources>

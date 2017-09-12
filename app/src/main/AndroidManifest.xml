@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.deselmo.android.tambourine">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppThemeLight"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+
+        <service
+            android:name=".MediaRecorderService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.deselmo.android.tambourine.MediaRecorderService.START" />
+                <action android:name="com.deselmo.android.tambourine.MediaRecorderService.STOP" />
+                <action android:name="com.deselmo.android.tambourine.MediaRecorderService.OPEN_ACTIVITY" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".FileManagerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.deselmo.android.tambourine.FileManagerService.RENAME" />
+                <action android:name="com.deselmo.android.tambourine.FileManagerService.DELETE" />
+            </intent-filter>
+        </service>
+
+
+        <activity
+            android:name=".TambourineActivity"
+            android:label="@string/title_tambourine_accelerometer">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".PlayActivity"
+            android:label="@string/title_activity_play"
+            android:parentActivityName=".TambourineActivity">
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName=".TambourineActivity">
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/device">
+        <EditTextPreference
+            android:title="@string/sensitivity"
+            android:key="sensitivity"
+            android:defaultValue="50"
+            android:inputType="number" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/personal">
+        <ListPreference
+            android:title="@string/Theme"
+            android:key="theme"
+            android:entries="@array/themes_available"
+            android:entryValues="@array/themes_available_value"
+            android:defaultValue="light" />
+
+
+        <ListPreference
+            android:title="@string/button_color"
+            android:key="button_color"
+            android:entries="@array/colors_available"
+            android:entryValues="@array/colors_available_value"
+            android:defaultValue="theme" />
+    </PreferenceCategory>
+</PreferenceScreen>
